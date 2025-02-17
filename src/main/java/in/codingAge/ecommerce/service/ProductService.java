@@ -1,11 +1,11 @@
-package in.codingAge.ecommerce.repository;
+package in.codingAge.ecommerce.service;
 
 import in.codingAge.ecommerce.model.Category;
 import in.codingAge.ecommerce.model.Product;
 
 import java.util.List;
 
-public interface ProductRepository {
+public interface ProductService {
 
     Category createProduct(Product product);
 

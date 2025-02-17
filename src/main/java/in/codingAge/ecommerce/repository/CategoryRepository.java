@@ -12,7 +12,7 @@ public interface CategoryRepository {
 
     Category getACategory(double id);
 
-    Category updateCategory(double id, String item);
+    Category updateCategory(double id, String name);
 
     boolean deleteCategory(double id);
 

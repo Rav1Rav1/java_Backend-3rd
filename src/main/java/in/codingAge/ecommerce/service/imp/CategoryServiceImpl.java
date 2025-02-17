@@ -25,9 +25,9 @@ public class CategoryServiceImpl {
          return categoryRepositoryImpl.getACategory(id);
     }
 
-    public Category updateCategory(double id, String item) {
+    public Category updateCategory(double id, String name) {
 
-        return categoryRepositoryImpl.updateCategory(id,item);
+        return categoryRepositoryImpl.updateCategory(id,name);
 
     }
 

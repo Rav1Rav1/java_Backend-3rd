@@ -29,10 +29,11 @@ public class CategoryRepositoryImpl {
         return null;
     }
 
-    public Category updateCategory(double id, String item) {
+    public Category updateCategory(double id, String name) {
 
-        for( Category category : categories){
-            if(category.getId()==id){
+        for (Category category : categories) {
+            if(category.getId() == id) {
+                category.setCategoryName(name);
                 return category;
             }
         }
