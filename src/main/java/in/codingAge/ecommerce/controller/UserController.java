@@ -2,8 +2,11 @@ package in.codingAge.ecommerce.controller;
 
 import in.codingAge.ecommerce.model.Category;
 import in.codingAge.ecommerce.model.User;
+import in.codingAge.ecommerce.service.UserService;
 import in.codingAge.ecommerce.service.imp.CategoryServiceImpl;
 import in.codingAge.ecommerce.service.imp.UserServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,8 +15,9 @@ import java.util.List;
 @RequestMapping("api/v1/user")
 public class UserController {
 
-    private final UserServiceImpl userService = new UserServiceImpl();
-
+//    private final UserServiceImpl userService = new UserServiceImpl();
+    @Autowired
+    private UserService userService;
 
     @PostMapping("/create")
     public User createUser(@RequestBody User user) {

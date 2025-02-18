@@ -4,10 +4,12 @@ import in.codingAge.ecommerce.model.Category;
 import in.codingAge.ecommerce.model.Product;
 import in.codingAge.ecommerce.repository.imp.CategoryRepositoryImpl;
 import in.codingAge.ecommerce.repository.imp.ProductRepositoryImpl;
+import in.codingAge.ecommerce.service.ProductService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
-public class ProductServiceImpl {
+@Service
+public class ProductServiceImpl implements ProductService {
 
     ProductRepositoryImpl productRepository = new ProductRepositoryImpl();
 

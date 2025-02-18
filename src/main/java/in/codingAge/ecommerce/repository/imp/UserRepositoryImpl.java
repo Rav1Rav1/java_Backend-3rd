@@ -2,11 +2,12 @@ package in.codingAge.ecommerce.repository.imp;
 
 import in.codingAge.ecommerce.model.Category;
 import in.codingAge.ecommerce.model.User;
+import in.codingAge.ecommerce.repository.UserRepository;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserRepositoryImpl {
+public class UserRepositoryImpl implements UserRepository {
 
     List<User> users=new ArrayList<>();
 

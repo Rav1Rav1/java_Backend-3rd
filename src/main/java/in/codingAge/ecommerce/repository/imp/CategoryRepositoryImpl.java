@@ -2,11 +2,12 @@ package in.codingAge.ecommerce.repository.imp;
 
 import in.codingAge.ecommerce.model.Category;
 import in.codingAge.ecommerce.model.EcommerceCarousel;
+import in.codingAge.ecommerce.repository.CategoryRepository;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CategoryRepositoryImpl {
+public class CategoryRepositoryImpl implements CategoryRepository {
 
     List<Category> categories=new ArrayList<>();
 
@@ -14,6 +15,11 @@ public class CategoryRepositoryImpl {
 
         categories.add(category);
         return category;
+    }
+
+    @Override
+    public List<Category> getAllCarousel() {
+        return categories;
     }
 
     public List<Category> getAllCategory() {

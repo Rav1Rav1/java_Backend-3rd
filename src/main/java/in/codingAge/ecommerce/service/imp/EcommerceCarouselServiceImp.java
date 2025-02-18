@@ -3,11 +3,13 @@ package in.codingAge.ecommerce.service.imp;
 import in.codingAge.ecommerce.model.EcommerceCarousel;
 import in.codingAge.ecommerce.repository.imp.EcommerceCarouselRepositoryImp;
 import in.codingAge.ecommerce.service.EcommerceCarouselService;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+@Service
 public class EcommerceCarouselServiceImp implements EcommerceCarouselService {
 
 

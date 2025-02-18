@@ -2,11 +2,12 @@ package in.codingAge.ecommerce.repository.imp;
 
 import in.codingAge.ecommerce.model.Category;
 import in.codingAge.ecommerce.model.SearchHistory;
+import in.codingAge.ecommerce.repository.SearchHistoryRepository;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class SearchHistoryRepositoryImpl {
+public class SearchHistoryRepositoryImpl implements SearchHistoryRepository {
 
     List<SearchHistory> searchHistories=new ArrayList<>();
 

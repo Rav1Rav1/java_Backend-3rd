@@ -1,16 +1,18 @@
 package in.codingAge.ecommerce.repository;
 
+import in.codingAge.ecommerce.model.SearchHistory;
+
 import java.util.List;
 
 public interface SearchHistoryRepository {
 
-    SearchHistoryRepository createSearchHistory(in.codingAge.ecommerce.model.SearchHistory searchHistory);
+    SearchHistory createSearchHistory(SearchHistory searchHistory);
 
-    List<in.codingAge.ecommerce.model.SearchHistory> getAllSearchHistory();
+    List<SearchHistory> getAllSearchHistory();
 
-    in.codingAge.ecommerce.model.SearchHistory getASearchHistory(double id);
+    SearchHistory getASearchHistory(double id);
 
-    in.codingAge.ecommerce.model.SearchHistory updateSearchHistory(double id, String journey);
+    SearchHistory updateSearchHistory(double id, String journey);
 
     boolean deleteSearchHistory(double id);
 

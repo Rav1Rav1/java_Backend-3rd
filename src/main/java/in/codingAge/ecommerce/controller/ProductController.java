@@ -2,8 +2,10 @@ package in.codingAge.ecommerce.controller;
 
 import in.codingAge.ecommerce.model.Category;
 import in.codingAge.ecommerce.model.Product;
+import in.codingAge.ecommerce.service.ProductService;
 import in.codingAge.ecommerce.service.imp.CategoryServiceImpl;
 import in.codingAge.ecommerce.service.imp.ProductServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,8 +14,10 @@ import java.util.List;
 @RequestMapping("api/v1/product")
 public class ProductController {
 
-    private final ProductServiceImpl productService = new ProductServiceImpl();
+//    private final ProductServiceImpl productService = new ProductServiceImpl();
 
+    @Autowired
+    private ProductService productService;
 
     @PostMapping("/create")
     public Product createProduct(@RequestBody Product product) {

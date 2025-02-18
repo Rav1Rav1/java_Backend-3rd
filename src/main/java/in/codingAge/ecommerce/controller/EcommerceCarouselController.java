@@ -1,7 +1,9 @@
 package in.codingAge.ecommerce.controller;
 
 import in.codingAge.ecommerce.model.EcommerceCarousel;
+import in.codingAge.ecommerce.service.EcommerceCarouselService;
 import in.codingAge.ecommerce.service.imp.EcommerceCarouselServiceImp;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,7 +15,10 @@ public class EcommerceCarouselController {
 
 //   private final EcommerceCarouselServiceImp ecommerceCarouselServiceImp = new EcommerceCarouselServiceImp();
 
-    private final EcommerceCarouselServiceImp carouselServiceImpl = new EcommerceCarouselServiceImp();
+//    private final EcommerceCarouselServiceImp carouselServiceImpl = new EcommerceCarouselServiceImp();
+
+    @Autowired
+    private EcommerceCarouselService carouselServiceImpl;
 
 //    @PostMapping
 //    public List<EcommerceCarousel> createEcommerceCarousel() {

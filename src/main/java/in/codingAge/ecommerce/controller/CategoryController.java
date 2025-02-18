@@ -1,9 +1,8 @@
 package in.codingAge.ecommerce.controller;
 
 import in.codingAge.ecommerce.model.Category;
-import in.codingAge.ecommerce.model.EcommerceCarousel;
-import in.codingAge.ecommerce.service.imp.CategoryServiceImpl;
-import in.codingAge.ecommerce.service.imp.EcommerceCarouselServiceImp;
+import in.codingAge.ecommerce.service.CategoryService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,7 +11,9 @@ import java.util.List;
 @RequestMapping("api/v1/category")
 public class CategoryController {
 
-    private final CategoryServiceImpl categoryServiceImpl = new CategoryServiceImpl();
+//    private final CategoryServiceImpl categoryServiceImpl = new CategoryServiceImpl();
+    @Autowired
+    private CategoryService categoryServiceImpl;
 
 
     @PostMapping("/create")
