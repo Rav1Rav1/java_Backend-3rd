@@ -1,8 +1,6 @@
 package in.codingAge.ecommerce.service.imp;
 
-import in.codingAge.ecommerce.model.Category;
 import in.codingAge.ecommerce.model.User;
-import in.codingAge.ecommerce.repository.imp.CategoryRepositoryImpl;
 import in.codingAge.ecommerce.repository.imp.UserRepositoryImpl;
 import in.codingAge.ecommerce.service.UserService;
 import org.springframework.context.annotation.Primary;

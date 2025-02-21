@@ -1,8 +1,6 @@
 package in.codingAge.ecommerce.service.imp;
 
-import in.codingAge.ecommerce.model.Category;
 import in.codingAge.ecommerce.model.SearchHistory;
-import in.codingAge.ecommerce.repository.imp.CategoryRepositoryImpl;
 import in.codingAge.ecommerce.repository.imp.SearchHistoryRepositoryImpl;
 import in.codingAge.ecommerce.service.SearchHistoryService;
 import org.springframework.stereotype.Service;

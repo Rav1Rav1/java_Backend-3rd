@@ -11,7 +11,7 @@ import java.util.List;
 @RequestMapping("api/v1/category")
 public class CategoryController {
 
-//    private final CategoryServiceImpl categoryServiceImpl = new CategoryServiceImpl();
+    //    private final CategoryServiceImpl categoryServiceImpl = new CategoryServiceImpl();
     @Autowired
     private CategoryService categoryServiceImpl;
 
@@ -28,20 +28,21 @@ public class CategoryController {
     }
 
     @GetMapping("/get/aCaruosel")
-    public Category getACategory (@RequestParam double id) {
+    public Category getACategory (@RequestParam String id) {
         return categoryServiceImpl.getACategory(id);
     }
 
 
     @PutMapping("/update/item")
-    public Category updateCategory(@RequestParam double id, String item) {
+    public Category updateCategory(@RequestParam String id, String item) {
 
         return categoryServiceImpl.updateCategory(id,item);
 
     }
     @DeleteMapping("/delete")
-    public boolean deleteCategory(@RequestParam double id){
+    public boolean deleteCategory(@RequestParam String id){
         return categoryServiceImpl.deleteCategory(id);
 
     }
 }
+

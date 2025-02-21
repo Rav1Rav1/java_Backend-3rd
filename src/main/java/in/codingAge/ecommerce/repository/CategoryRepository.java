@@ -1,19 +1,14 @@
 package in.codingAge.ecommerce.repository;
 
 import in.codingAge.ecommerce.model.Category;
+import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-public interface CategoryRepository {
+@Repository
+public interface CategoryRepository extends MongoRepository<Category,String> {
 
-    Category createCategory(Category category);
 
-    List<Category> getAllCarousel();
-
-    Category getACategory(double id);
-
-    Category updateCategory(double id, String name);
-
-    boolean deleteCategory(double id);
 
 }

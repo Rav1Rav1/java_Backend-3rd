@@ -1,39 +1,41 @@
 package in.codingAge.ecommerce.service.imp;
 
 import in.codingAge.ecommerce.model.Category;
-import in.codingAge.ecommerce.repository.imp.CategoryRepositoryImpl;
-import in.codingAge.ecommerce.repository.imp.EcommerceCarouselRepositoryImp;
+import in.codingAge.ecommerce.repository.CategoryRepository;
 import in.codingAge.ecommerce.service.CategoryService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+import java.util.Optional;
+
 @Service
 public class CategoryServiceImpl implements CategoryService {
 
-    CategoryRepositoryImpl categoryRepositoryImpl = new CategoryRepositoryImpl();
+    @Autowired
+    CategoryRepository categoryRepository;
 
 
      public  Category createCategory(Category category) {
 
-     return   categoryRepositoryImpl.createCategory(category);
+     return   categoryRepository.save(category);
     }
 
     public List<Category> getAllCategory() {
-         return categoryRepositoryImpl.getAllCategory();
+         return categoryRepository.findAll();
     }
 
-    public Category getACategory(double id) {
-         return categoryRepositoryImpl.getACategory(id);
+    public Optional<Category> getACategory(String id) {
+         return categoryRepository.findById(id);
     }
 
-    public Category updateCategory(double id, String name) {
+    public Category updateCategory(String id, String name) {
 
-        return categoryRepositoryImpl.updateCategory(id,name);
+        return categoryRepository.save(id,name);
 
     }
 
-    public boolean deleteCategory(double id) {
-        return categoryRepositoryImpl.deleteCategory(id);
+    public boolean deleteCategory(String id) {
+        return categoryRepository.delete(id);
     }
 }

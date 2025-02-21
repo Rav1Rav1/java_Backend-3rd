@@ -12,10 +12,10 @@ public interface CategoryService {
 
     List<Category> getAllCategory();
 
-    Category getACategory(double id);
+    Category getACategory(String id);
 
-    Category updateCategory(double id, String name);
+    Category updateCategory(String id, String name);
 
-    boolean deleteCategory(double id);
+    boolean deleteCategory(String id);
 
 }
