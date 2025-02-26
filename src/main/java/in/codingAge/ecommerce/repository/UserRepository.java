@@ -1,19 +1,14 @@
 package in.codingAge.ecommerce.repository;
 
 import in.codingAge.ecommerce.model.User;
+import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-public interface UserRepository {
+@Repository
+public interface UserRepository extends MongoRepository<User,String> {
 
-    User createUser(User user);
 
-    List<User> getAllUser();
-
-    User getAUser(double id);
-
-    User updateUser(double id, String name);
-
-    boolean deleteUser(double id);
-
+    User findByName();
 }

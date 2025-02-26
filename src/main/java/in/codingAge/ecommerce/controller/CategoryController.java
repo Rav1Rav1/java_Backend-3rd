@@ -1,7 +1,9 @@
 package in.codingAge.ecommerce.controller;
 
 import in.codingAge.ecommerce.model.Category;
+import in.codingAge.ecommerce.model.Product;
 import in.codingAge.ecommerce.service.CategoryService;
+import in.codingAge.ecommerce.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,38 +13,42 @@ import java.util.List;
 @RequestMapping("api/v1/category")
 public class CategoryController {
 
-    //    private final CategoryServiceImpl categoryServiceImpl = new CategoryServiceImpl();
     @Autowired
-    private CategoryService categoryServiceImpl;
-
+    private CategoryService categorService;
 
     @PostMapping("/create")
     public Category createCategory(@RequestBody Category category) {
-        return categoryServiceImpl.createCategory(category);
+        return categorService.createCategory(category);
     }
 
 
     @GetMapping("/get/all")
     public List<Category> getAllCategory () {
-        return categoryServiceImpl.getAllCategory();
+        return categorService.getAllCategory();
     }
 
-    @GetMapping("/get/aCaruosel")
+    @GetMapping("/get/aProduct")
     public Category getACategory (@RequestParam String id) {
-        return categoryServiceImpl.getACategory(id);
+       return   categorService.getACategory(id);
+    }
+
+    @GetMapping("/get/aProductByName")
+    public Category getACategoryByName (@RequestParam String name) {
+      return categorService.getACategoryByName(name);
     }
 
 
-    @PutMapping("/update/item")
-    public Category updateCategory(@RequestParam String id, String item) {
+    @PutMapping("/update/title")
+    public void updateCategory(@RequestParam String id, @RequestParam String title) {
 
-        return categoryServiceImpl.updateCategory(id,item);
+         categorService.updateCategory(id,title);
 
     }
     @DeleteMapping("/delete")
-    public boolean deleteCategory(@RequestParam String id){
-        return categoryServiceImpl.deleteCategory(id);
+    public void deleteCategory(@RequestParam String id){
+         categorService.deleteCategory(id);
 
     }
+
 }
 

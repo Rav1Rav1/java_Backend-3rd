@@ -4,7 +4,6 @@ import in.codingAge.ecommerce.model.Category;
 import in.codingAge.ecommerce.model.User;
 import in.codingAge.ecommerce.service.UserService;
 import in.codingAge.ecommerce.service.imp.CategoryServiceImpl;
-import in.codingAge.ecommerce.service.imp.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
@@ -31,20 +30,25 @@ public class UserController {
     }
 
     @GetMapping("/get/aUser")
-    public User getAUser (@RequestParam double id) {
+    public User getAUser (@RequestParam String id) {
         return userService.getAUser(id);
+    }
+
+    @GetMapping("/get/aUserByName")
+    public User getAUserByName (@RequestParam String name) {
+        return userService.getAUserByName(name);
     }
 
 
     @PutMapping("/update/item")
-    public User updateUser(@RequestParam double id, String name) {
+    public User updateUser(@RequestBody User user) {
 
-        return userService.updateUser(id,name);
+        return userService.updateUser(user);
 
     }
     @DeleteMapping("/delete")
-    public boolean deleteUser(@RequestParam double id){
-        return userService.deleteUser(id);
+    public void deleteUser(@RequestParam String id){
+         userService.deleteUser(id);
 
     }
 

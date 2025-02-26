@@ -1,111 +1,60 @@
 package in.codingAge.ecommerce.service.imp;
 
 import in.codingAge.ecommerce.model.EcommerceCarousel;
-import in.codingAge.ecommerce.repository.imp.EcommerceCarouselRepositoryImp;
+import in.codingAge.ecommerce.repository.EcommerceCarouselRepository;
 import in.codingAge.ecommerce.service.EcommerceCarouselService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 @Service
 public class EcommerceCarouselServiceImp implements EcommerceCarouselService {
 
 
-    EcommerceCarouselRepositoryImp ecommerceCarouselRepositoryImp = new EcommerceCarouselRepositoryImp();
-    Scanner sc;
-    List<EcommerceCarousel> ecommerceCarouselList1;
-    List<EcommerceCarousel> ecommerceCarouselList;
-    List<EcommerceCarousel> ecommerceCarouselList2;
-    List<EcommerceCarousel> ecommerceCarouselList3;
-
-//    public EcommerceCarouselServiceImp() {
-//        this.sc = new Scanner(System.in);
-//        this.ecommerceCarouselList1 = new ArrayList();
-//        this.ecommerceCarouselList = this.ecommerceCarouselRepositoryImp.getEcommerceCarousel();
-//        this.ecommerceCarouselList2 = new ArrayList();
-//        this.ecommerceCarouselList3 = new ArrayList();
-//    }
-
-//    public List<EcommerceCarousel> createEcommerceCarousel() {
-//        return this.ecommerceCarouselRepositoryImp.createEcommerceCarousel();
-//    }
-
+    @Autowired
+    EcommerceCarouselRepository ecommerceCarouselRepository;
 
     @Override
     public EcommerceCarousel createEcommerceCarousel(EcommerceCarousel carousel) {
-//        EcommerceCarousel ecommerceCarousel = new EcommerceCarousel();
-//        ecommerceCarousel.setInterval(carousel.getInterval());
-//        ecommerceCarousel.setItems(carousel.getItems());
-//        ecommerceCarousel.setUserId(carousel.getUserId());
-        return ecommerceCarouselRepositoryImp.createEcommerceCarousel(carousel);
+        EcommerceCarousel ecommerceCarousel = new EcommerceCarousel();
+       ecommerceCarouselRepository.save(carousel);
+        return ecommerceCarousel;
     }
 
-    public List<EcommerceCarousel> getEcommerceCarousel() {
-        return this.ecommerceCarouselRepositoryImp.getEcommerceCarousel();
-    }
-
-    public List<EcommerceCarousel> getEcommerceCarouselById(double id) {
-        for(EcommerceCarousel ecommerceCarousel : this.ecommerceCarouselList) {
-            if (ecommerceCarousel.getUserId() == id) {
-                this.ecommerceCarouselList1.add(ecommerceCarousel);
-            }
-        }
-
-        return this.ecommerceCarouselList1;
-    }
-
-    public List<EcommerceCarousel> updateEcommerceCarousel(double id) {
-        for(EcommerceCarousel ecommerceCarousel : this.ecommerceCarouselList) {
-            if (ecommerceCarousel.getUserId() == id) {
-                System.out.println("Enter id");
-                double userId = this.sc.nextDouble();
-                System.out.println("Enter Item");
-                String item = this.sc.nextLine();
-                System.out.println("Enter Interval");
-                double interval = this.sc.nextDouble();
-                ecommerceCarousel.setInterval(interval);
-                ecommerceCarousel.setItems(item);
-                ecommerceCarousel.setUserId(userId);
-                this.ecommerceCarouselList2.add(ecommerceCarousel);
-            } else {
-                this.ecommerceCarouselList2.add(ecommerceCarousel);
-            }
-        }
-
-        return this.ecommerceCarouselList2;
-    }
-
-    public List<EcommerceCarousel> deleteEcommerceCarousel(double id) {
-        for(EcommerceCarousel ecommerceCarousel : this.ecommerceCarouselList) {
-            if (ecommerceCarousel.getUserId() != id) {
-                this.ecommerceCarouselList3.add(ecommerceCarousel);
-            }
-        }
-
-        return this.ecommerceCarouselList3;
-    }
 
     @Override
     public List<EcommerceCarousel> getAllCarousel() {
-        return ecommerceCarouselRepositoryImp.getAllCarousel();
+        return ecommerceCarouselRepository.findAll();
     }
 
     @Override
-    public EcommerceCarousel updateCarousel(double id, String item) {
-        return ecommerceCarouselRepositoryImp.updateCarousel(id,item);
-    }
-
-    @Override
-    public boolean deleteCarousel(double id) {
-        return ecommerceCarouselRepositoryImp.deleteCarousel(id);
+    public EcommerceCarousel getACarousel ( String id) {
+        return ecommerceCarouselRepository.findById(id).orElse(null);
     }
 
 
     @Override
-    public EcommerceCarousel getACarousel(double id) {
-        return ecommerceCarouselRepositoryImp.getACarousel(id);
+    public EcommerceCarousel getACarouselByItem(String items) {
+        return ecommerceCarouselRepository.findByItem(items);
+    }
+
+    @Override
+    public void updateCarousel(String id, String item) {
+        EcommerceCarousel ecommerceCarousel =ecommerceCarouselRepository.findById(id).orElse(null);
+        if(ecommerceCarousel !=null) {
+            ecommerceCarousel.setItem(item);
+            ecommerceCarouselRepository.save(ecommerceCarousel);
+        }
+    }
+
+    @Override
+    public void deleteCarousel(String id) {
+        ecommerceCarouselRepository.deleteById(id);
     }
 
 }
+
+

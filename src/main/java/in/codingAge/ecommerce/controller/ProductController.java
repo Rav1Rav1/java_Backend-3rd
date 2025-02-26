@@ -31,20 +31,25 @@ public class ProductController {
     }
 
     @GetMapping("/get/aProduct")
-    public Product getAProduct (@RequestParam double id) {
+    public Product getAProduct (@RequestParam String id) {
         return productService.getAProduct(id);
     }
 
+    @GetMapping("/get/aProductByBrand")
+    public Product getAProductByBrand (@RequestParam String brand) {
+        return productService.getAProductByBrand(brand);
+    }
 
-    @PutMapping("/update/title")
-    public Product updateProduct(@RequestParam double id, @RequestParam String title) {
 
-        return productService.updateProduct(id,title);
+    @PutMapping("/update")
+    public Product updateProduct(@RequestBody Product product) {
+
+        return productService.updateProduct(product);
 
     }
     @DeleteMapping("/delete")
-    public boolean deleteProduct(@RequestParam double id){
-        return productService.deleteProduct(id);
+    public void deleteProduct(@RequestParam String id){
+         productService.deleteProduct(id);
 
     }
 

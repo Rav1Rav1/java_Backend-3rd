@@ -1,38 +1,45 @@
 package in.codingAge.ecommerce.service.imp;
 
 import in.codingAge.ecommerce.model.Product;
-import in.codingAge.ecommerce.repository.imp.ProductRepositoryImpl;
+import in.codingAge.ecommerce.repository.ProductRepository;
 import in.codingAge.ecommerce.service.ProductService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 @Service
 public class ProductServiceImpl implements ProductService {
 
-    ProductRepositoryImpl productRepository = new ProductRepositoryImpl();
+    @Autowired
+    ProductRepository productRepository;
 
-
+    @Override
     public Product createProduct(Product product) {
-
-        return   productRepository.createProduct(product);
+        return productRepository.save(product);
     }
 
+    @Override
     public List<Product> getAllProduct() {
-        return productRepository.getAllProduct();
+        return productRepository.findAll();
     }
 
-    public Product getAProduct(double id) {
-        return productRepository.getAProduct(id);
+    @Override
+    public Product getAProduct(String id) {
+        return productRepository.findById(id).orElse(null);
     }
 
-    public Product updateProduct(double id, String title) {
-
-        return productRepository.updateProduct(id,title);
-
+    @Override
+    public Product updateProduct(Product product1) {
+      return   productRepository.save(product1);
     }
 
-    public boolean deleteProduct(double id) {
-        return productRepository.deleteProduct(id);
+    @Override
+    public void deleteProduct(String id) {
+        productRepository.deleteById(id);
     }
 
+    @Override
+    public Product getAProductByBrand(String id) {
+        return productRepository.findByBrand();
+    }
 }

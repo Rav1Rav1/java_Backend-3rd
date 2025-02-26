@@ -4,7 +4,6 @@ import in.codingAge.ecommerce.model.Category;
 import in.codingAge.ecommerce.model.SearchHistory;
 import in.codingAge.ecommerce.service.SearchHistoryService;
 import in.codingAge.ecommerce.service.imp.CategoryServiceImpl;
-import in.codingAge.ecommerce.service.imp.SearchHistoryServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +16,8 @@ public class SearchHistoryController {
 
 //    private final SearchHistoryServiceImpl searchHistoryService = new SearchHistoryServiceImpl();
     @Autowired
-    @Qualifier("SearchHistoryServiceImpl")
+
+//    @Qualifier("SearchHistoryServiceImpl")
     private SearchHistoryService searchHistoryService;
 
 
@@ -33,20 +33,25 @@ public class SearchHistoryController {
     }
 
     @GetMapping("/get/aSearchHistory")
-    public SearchHistory getASearchHistory (@RequestParam double id) {
+    public SearchHistory getASearchHistory (@RequestParam String id) {
         return searchHistoryService.getASearchHistory(id);
+    }
+
+    @GetMapping("/get/aSearchHistoryByJourney")
+    public SearchHistory getASearchHistoryByJourney (@RequestParam String id,@RequestParam String journey) {
+        return searchHistoryService.getASearchHistoryByJourney(id,journey);
     }
 
 
     @PutMapping("/update/journey")
-    public SearchHistory updateSearchHistory(@RequestParam double id, String journey) {
+    public SearchHistory updateSearchHistory(@RequestBody SearchHistory searchHistory) {
 
-        return searchHistoryService.updateSearchHistory(id,journey);
+        return searchHistoryService.updateSearchHistory(searchHistory);
 
     }
     @DeleteMapping("/delete")
-    public boolean deleteSearchHistory(@RequestParam double id){
-        return searchHistoryService.deleteSearchHistory(id);
+    public void deleteSearchHistory(@RequestParam String id){
+         searchHistoryService.deleteSearchHistory(id);
 
     }
 

@@ -1,38 +1,45 @@
 package in.codingAge.ecommerce.service.imp;
 
 import in.codingAge.ecommerce.model.SearchHistory;
-import in.codingAge.ecommerce.repository.imp.SearchHistoryRepositoryImpl;
+import in.codingAge.ecommerce.repository.SearchHistoryRepository;
 import in.codingAge.ecommerce.service.SearchHistoryService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 @Service
 public class SearchHistoryServiceImpl implements SearchHistoryService {
 
-    SearchHistoryRepositoryImpl searchHistoryRepository = new SearchHistoryRepositoryImpl();
 
-
+    @Autowired
+    SearchHistoryRepository searchHistoryRepository;
+    @Override
     public SearchHistory createSearchHistory(SearchHistory searchHistory) {
-
-        return   searchHistoryRepository.createSearchHistory(searchHistory);
+        return searchHistoryRepository.save(searchHistory);
     }
 
+    @Override
     public List<SearchHistory> getAllSearchHistory() {
-        return searchHistoryRepository.getAllSearchHistory();
+        return searchHistoryRepository.findAll();
     }
 
-    public SearchHistory getASearchHistory(double id) {
-        return searchHistoryRepository.getASearchHistory(id);
+    @Override
+    public SearchHistory getASearchHistory(String id) {
+        return searchHistoryRepository.findById(id).orElse(null);
     }
 
-    public SearchHistory updateSearchHistory(double id, String journey) {
-
-        return searchHistoryRepository.updateSearchHistory(id,journey);
-
+    @Override
+    public void deleteSearchHistory(String id) {
+        searchHistoryRepository.deleteById(id);
     }
 
-    public boolean deleteSearchHistory(double id) {
-        return searchHistoryRepository.deleteSearchHistory(id);
+    @Override
+    public SearchHistory updateSearchHistory(SearchHistory searchHistory) {
+        return searchHistoryRepository.save(searchHistory);
     }
 
+    @Override
+    public SearchHistory getASearchHistoryByJourney(String id,String journey) {
+        return searchHistoryRepository.findAllByJourney();
+    }
 }

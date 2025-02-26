@@ -11,12 +11,12 @@ public interface SearchHistoryService {
 
     List<SearchHistory> getAllSearchHistory();
 
-    SearchHistory getASearchHistory(double id);
+    SearchHistory getASearchHistory(String id);
 
-    SearchHistory updateSearchHistory(double id, String journey);
-
-    boolean deleteSearchHistory(double id);
+    void deleteSearchHistory(String id);
 
 
+    SearchHistory updateSearchHistory(SearchHistory searchHistory);
 
+    SearchHistory getASearchHistoryByJourney(String id ,String journey);
 }

@@ -13,12 +13,9 @@ import java.util.List;
 @RequestMapping("/api/v1/carousel")
 public class EcommerceCarouselController {
 
-//   private final EcommerceCarouselServiceImp ecommerceCarouselServiceImp = new EcommerceCarouselServiceImp();
-
-//    private final EcommerceCarouselServiceImp carouselServiceImpl = new EcommerceCarouselServiceImp();
 
     @Autowired
-    private EcommerceCarouselService carouselServiceImpl;
+    private EcommerceCarouselService carouselService;
 
 //    @PostMapping
 //    public List<EcommerceCarousel> createEcommerceCarousel() {
@@ -54,31 +51,35 @@ public class EcommerceCarouselController {
 
     @PostMapping("/create")
     public EcommerceCarousel createCarousel(@RequestBody EcommerceCarousel carousel) {
-        return carouselServiceImpl.createEcommerceCarousel(carousel);
+        return carouselService.createEcommerceCarousel(carousel);
     }
 
     @GetMapping("/get/all")
     public List<EcommerceCarousel> getAllCarousel () {
-        return carouselServiceImpl.getAllCarousel();
+        return carouselService.getAllCarousel();
     }
 
-    @GetMapping("/get/aCaruosel")
-    public EcommerceCarousel getACarousel (@RequestParam double id) {
-        return carouselServiceImpl.getACarousel(id);
+    @GetMapping("/get/aCarousel")
+    public EcommerceCarousel getACarousel (@RequestParam String id) {
+        return carouselService.getACarousel(id);
+    }
+
+    @GetMapping("/get/aCarouselItem")
+    public EcommerceCarousel getACarouselByItemName (@RequestParam String items) {
+        return carouselService.getACarouselByItem(items);
     }
 
     @PutMapping("/update/item")
-    public EcommerceCarousel updateCarousel(@RequestParam double id, String item) {
+    public void updateCarousel(@RequestParam String id,@RequestParam String item) {
 
-        return carouselServiceImpl.updateCarousel(id,item);
+         carouselService.updateCarousel(id,item);
 
     }
 
 
 @DeleteMapping("/delete")
-    public boolean deleteCarousel(@RequestParam double id){
-
-        return carouselServiceImpl.deleteCarousel(id);
+    public void deleteCarousel(@RequestParam String id){
+        carouselService.deleteCarousel(id);
 
 }
 

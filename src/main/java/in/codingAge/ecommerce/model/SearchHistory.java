@@ -1,32 +1,22 @@
 package in.codingAge.ecommerce.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Document("searchHistory")
 public class SearchHistory {
 
-    private double userId;
+    @Id
+    private String Id;
     private String[] productList;
     private String journey;
 
-    public double getUserId() {
-        return userId;
-    }
-
-    public void setUserId(double userId) {
-        this.userId = userId;
-    }
-
-    public String[] getProductList() {
-        return productList;
-    }
-
-    public void setProductList(String[] productList) {
-        this.productList = productList;
-    }
-
-    public String getJourney() {
-        return journey;
-    }
-
-    public void setJourney(String journey) {
-        this.journey = journey;
-    }
 }

@@ -1,39 +1,21 @@
 package in.codingAge.ecommerce.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 @Getter
 @Setter
-
-
+@Document(collection = "ecommerce_carousel")
+@AllArgsConstructor
+@NoArgsConstructor
 public class EcommerceCarousel {
 
-
-    private double userId;
-    private String items;
+    @Id
+    private String id;
+    private String item;
     private double interval;
-
-    public double getUserId() {
-        return userId;
-    }
-
-    public void setUserId(double userId) {
-        this.userId = userId;
-    }
-
-    public String getItems() {
-        return items;
-    }
-
-    public void setItems(String items) {
-        this.items = items;
-    }
-
-    public double getInterval() {
-        return interval;
-    }
-
-    public void setInterval(double interval) {
-        this.interval = interval;
-    }
 }

@@ -11,10 +11,11 @@ public interface ProductService {
 
     List<Product> getAllProduct();
 
-    Product getAProduct(double id);
+    Product getAProduct(String id);
 
-    Product updateProduct(double id, String title);
+    Product updateProduct(Product product);
 
-    boolean deleteProduct(double id);
+    void deleteProduct(String id);
 
+    Product getAProductByBrand(String id);
 }
