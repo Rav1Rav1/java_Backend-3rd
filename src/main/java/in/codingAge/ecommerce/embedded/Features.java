@@ -8,7 +8,7 @@ import lombok.Setter;
 @Setter
 public class Features {
 
-private  String material;
+    private  String material;
     private  String color;
 
 }
