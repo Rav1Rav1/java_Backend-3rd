@@ -41,8 +41,11 @@ public class Product1ServiceImpl implements Product1Service {
     @Override
     public Optional<Product1> findByNameAndTypeAndTitle(String name, String type, String title) {
 
-            return product1Repository.findByNameAndTypeAndTitle(name, type, title)
-                    .or(() -> { throw new ProductNotFoundException("Product not found"); });
+        Optional<Product1> findByNametypeandTitle=product1Repository.findByNameAndTypeAndTitle(name,type,title);
+        if (findByNametypeandTitle.isEmpty()){
+            throw new ProductNotFoundException("Product Not Found ");
+        }
+            return findByNametypeandTitle;
 
     }
 
@@ -84,12 +87,18 @@ public class Product1ServiceImpl implements Product1Service {
     @Override
     public Optional<Product1> findByNameAndType(String name, String type) {
         Optional<Product1> byNameAndType = product1Repository.findByNameAndType(name, type);
+        if (byNameAndType.isEmpty()){
+            throw new ProductNotFoundException("Product not found ");
+        }
         return byNameAndType;
     }
 
     @Override
     public Optional<Product1> findByNameOrType(String name, String type) {
         Optional<Product1> byNameOrType=product1Repository.findByNameOrType(name,type);
+        if (byNameOrType.isEmpty()){
+            throw new ProductNotFoundException("product not found ");
+        }
         return byNameOrType;
     }
 
