@@ -6,9 +6,10 @@ import org.springframework.stereotype.Repository;
 
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface EcommerceCarouselRepository extends MongoRepository<EcommerceCarousel,String> {
 
-   EcommerceCarousel findByItem(String name);
+   Optional<EcommerceCarousel> findByItem(String name);
 }

@@ -1,9 +1,14 @@
 package in.codingAge.ecommerce.service.imp;
 
+import in.codingAge.ecommerce.exception.ProductNotFoundException;
 import in.codingAge.ecommerce.model.SearchHistory;
 import in.codingAge.ecommerce.repository.SearchHistoryRepository;
 import in.codingAge.ecommerce.service.SearchHistoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,13 +24,15 @@ public class SearchHistoryServiceImpl implements SearchHistoryService {
     }
 
     @Override
-    public List<SearchHistory> getAllSearchHistory() {
-        return searchHistoryRepository.findAll();
+    public Page<SearchHistory> getAllSearchHistory(int pageNo,int pageSize) {
+        Sort sortById=Sort.by("Id").ascending();
+        Pageable pageable= PageRequest.of(pageNo,pageSize);
+        return searchHistoryRepository.findAll(pageable);
     }
 
     @Override
     public SearchHistory getASearchHistory(String id) {
-        return searchHistoryRepository.findById(id).orElse(null);
+        return searchHistoryRepository.findById(id).orElseThrow(()->new ProductNotFoundException("Search history not found "));
     }
 
     @Override
@@ -39,7 +46,7 @@ public class SearchHistoryServiceImpl implements SearchHistoryService {
     }
 
     @Override
-    public SearchHistory getASearchHistoryByJourney(String id,String journey) {
-        return searchHistoryRepository.findAllByJourney();
+    public SearchHistory getASearchHistoryByJourney(String journey) {
+        return searchHistoryRepository.findAllByJourney(journey).orElseThrow(()->new ProductNotFoundException("Search history not found "));
     }
 }

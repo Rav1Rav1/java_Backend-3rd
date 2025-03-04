@@ -1,11 +1,13 @@
 package in.codingAge.ecommerce.controller;
 
+import in.codingAge.ecommerce.base.ApiResponse;
 import in.codingAge.ecommerce.model.Category;
 import in.codingAge.ecommerce.model.User;
 import in.codingAge.ecommerce.service.UserService;
 import in.codingAge.ecommerce.service.imp.CategoryServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,18 +27,18 @@ public class UserController {
 
 
     @GetMapping("/get/all")
-    public List<User> getAllUser () {
-        return userService.getAllUser();
+    public Page<User> getAllUser (@RequestParam int pageNo,@RequestParam int pageSize) {
+        return userService.getAllUser(pageNo,pageSize);
     }
 
     @GetMapping("/get/aUser")
-    public User getAUser (@RequestParam String id) {
-        return userService.getAUser(id);
+    public ApiResponse<User> getAUser (@RequestParam String id) {
+        return new ApiResponse<>(userService.getAUser(id),"success",null);
     }
 
     @GetMapping("/get/aUserByName")
-    public User getAUserByName (@RequestParam String name) {
-        return userService.getAUserByName(name);
+    public ApiResponse<User> getAUserByName (@RequestParam String name) {
+        return new ApiResponse<>(userService.getAUserByName(name),"success",null);
     }
 
 

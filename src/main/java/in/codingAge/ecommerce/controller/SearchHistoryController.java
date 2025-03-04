@@ -1,11 +1,13 @@
 package in.codingAge.ecommerce.controller;
 
+import in.codingAge.ecommerce.base.ApiResponse;
 import in.codingAge.ecommerce.model.Category;
 import in.codingAge.ecommerce.model.SearchHistory;
 import in.codingAge.ecommerce.service.SearchHistoryService;
 import in.codingAge.ecommerce.service.imp.CategoryServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,18 +30,18 @@ public class SearchHistoryController {
 
 
     @GetMapping("/get/all")
-    public List<SearchHistory> getAllSearchHistory () {
-        return searchHistoryService.getAllSearchHistory();
+    public Page<SearchHistory> getAllSearchHistory (@RequestParam int pageNo, int pageSize) {
+        return searchHistoryService.getAllSearchHistory(pageNo,pageSize);
     }
 
     @GetMapping("/get/aSearchHistory")
-    public SearchHistory getASearchHistory (@RequestParam String id) {
-        return searchHistoryService.getASearchHistory(id);
+    public ApiResponse<SearchHistory> getASearchHistory (@RequestParam String id) {
+        return new ApiResponse<>(searchHistoryService.getASearchHistory(id),"success",null) ;
     }
 
     @GetMapping("/get/aSearchHistoryByJourney")
-    public SearchHistory getASearchHistoryByJourney (@RequestParam String id,@RequestParam String journey) {
-        return searchHistoryService.getASearchHistoryByJourney(id,journey);
+    public ApiResponse<SearchHistory> getASearchHistoryByJourney (@RequestParam String journey) {
+        return new ApiResponse<>(searchHistoryService.getASearchHistoryByJourney(journey),"success",null) ;
     }
 
 

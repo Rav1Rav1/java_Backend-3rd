@@ -1,9 +1,11 @@
 package in.codingAge.ecommerce.controller;
 
+import in.codingAge.ecommerce.base.ApiResponse;
 import in.codingAge.ecommerce.model.EcommerceCarousel;
 import in.codingAge.ecommerce.service.EcommerceCarouselService;
 import in.codingAge.ecommerce.service.imp.EcommerceCarouselServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -50,23 +52,23 @@ public class EcommerceCarouselController {
     // normal parmeter --> @Path  // google
 
     @PostMapping("/create")
-    public EcommerceCarousel createCarousel(@RequestBody EcommerceCarousel carousel) {
+    public EcommerceCarousel createEcommerceCarousel(@RequestBody EcommerceCarousel carousel) {
         return carouselService.createEcommerceCarousel(carousel);
     }
 
     @GetMapping("/get/all")
-    public List<EcommerceCarousel> getAllCarousel () {
-        return carouselService.getAllCarousel();
+    public Page<EcommerceCarousel> getAllCarousel (@RequestParam int pageNo ,@RequestParam int pageSize) {
+        return carouselService.getAllCarousel(pageNo,pageSize);
     }
 
     @GetMapping("/get/aCarousel")
-    public EcommerceCarousel getACarousel (@RequestParam String id) {
-        return carouselService.getACarousel(id);
+    public ApiResponse<EcommerceCarousel> getACarousel (@RequestParam String id) {
+        return new ApiResponse<>(carouselService.getACarousel(id),"success",null);
     }
 
     @GetMapping("/get/aCarouselItem")
-    public EcommerceCarousel getACarouselByItemName (@RequestParam String items) {
-        return carouselService.getACarouselByItem(items);
+    public ApiResponse<EcommerceCarousel> getACarouselByItemName (@RequestParam String items) {
+        return new ApiResponse<>(carouselService.getACarouselByItem(items),"success",null);
     }
 
     @PutMapping("/update/item")

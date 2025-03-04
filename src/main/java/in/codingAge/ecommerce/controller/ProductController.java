@@ -1,11 +1,13 @@
 package in.codingAge.ecommerce.controller;
 
+import in.codingAge.ecommerce.base.ApiResponse;
 import in.codingAge.ecommerce.model.Category;
 import in.codingAge.ecommerce.model.Product;
 import in.codingAge.ecommerce.service.ProductService;
 import in.codingAge.ecommerce.service.imp.CategoryServiceImpl;
 import in.codingAge.ecommerce.service.imp.ProductServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,18 +28,18 @@ public class ProductController {
 
 
     @GetMapping("/get/all")
-    public List<Product> getAllProduct () {
-        return productService.getAllProduct();
+    public Page<Product> getAllProduct (@RequestParam int pageNo,@RequestParam int pageSize) {
+        return productService.getAllProduct(pageNo,pageSize);
     }
 
     @GetMapping("/get/aProduct")
-    public Product getAProduct (@RequestParam String id) {
-        return productService.getAProduct(id);
+    public ApiResponse<Product> getAProduct (@RequestParam String id) {
+        return new ApiResponse<>(productService.getAProduct(id),"success",null);
     }
 
     @GetMapping("/get/aProductByBrand")
-    public Product getAProductByBrand (@RequestParam String brand) {
-        return productService.getAProductByBrand(brand);
+    public ApiResponse<Product> getAProductByBrand (@RequestParam String brand) {
+        return new ApiResponse<>(productService.getAProductByBrand(brand),"seccess",null);
     }
 
 

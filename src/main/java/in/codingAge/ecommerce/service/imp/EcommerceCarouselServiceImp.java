@@ -1,9 +1,14 @@
 package in.codingAge.ecommerce.service.imp;
 
+import in.codingAge.ecommerce.exception.ProductNotFoundException;
 import in.codingAge.ecommerce.model.EcommerceCarousel;
 import in.codingAge.ecommerce.repository.EcommerceCarouselRepository;
 import in.codingAge.ecommerce.service.EcommerceCarouselService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,25 +25,27 @@ public class EcommerceCarouselServiceImp implements EcommerceCarouselService {
     @Override
     public EcommerceCarousel createEcommerceCarousel(EcommerceCarousel carousel) {
         EcommerceCarousel ecommerceCarousel = new EcommerceCarousel();
-       ecommerceCarouselRepository.save(carousel);
-        return ecommerceCarousel;
+     return   ecommerceCarouselRepository.save(carousel);
+
     }
 
 
     @Override
-    public List<EcommerceCarousel> getAllCarousel() {
-        return ecommerceCarouselRepository.findAll();
+    public Page<EcommerceCarousel> getAllCarousel(int pageNo, int pageSize) {
+        Sort sortByItem=Sort.by("item").ascending();
+        Pageable pageable= PageRequest.of(pageNo,pageSize);
+        return ecommerceCarouselRepository.findAll(pageable);
     }
 
     @Override
     public EcommerceCarousel getACarousel ( String id) {
-        return ecommerceCarouselRepository.findById(id).orElse(null);
+        return ecommerceCarouselRepository.findById(id).orElseThrow(()->new ProductNotFoundException("Carousel not found"));
     }
 
 
     @Override
     public EcommerceCarousel getACarouselByItem(String items) {
-        return ecommerceCarouselRepository.findByItem(items);
+        return ecommerceCarouselRepository.findByItem(items).orElseThrow(()->new ProductNotFoundException("Carousel not found"));
     }
 
     @Override

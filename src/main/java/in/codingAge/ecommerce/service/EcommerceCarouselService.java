@@ -2,6 +2,7 @@ package in.codingAge.ecommerce.service;
 
 
 import in.codingAge.ecommerce.model.EcommerceCarousel;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 
@@ -11,7 +12,7 @@ public interface EcommerceCarouselService {
     EcommerceCarousel createEcommerceCarousel(EcommerceCarousel carousel);
 
 
-    List<EcommerceCarousel> getAllCarousel();
+    Page<EcommerceCarousel> getAllCarousel(int pageNo, int pageSize);
 
     void updateCarousel(String id, String item);
 
